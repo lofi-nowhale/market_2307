@@ -66,4 +66,28 @@ RSpec.describe Market do
       expect(@vendor3.potential_revenue).to eq 48.75
     end
   end
+
+  describe "#sorted_item_list" do 
+    it "can return an array of all items that all vendors have in stock, sorted alphabetically, with NO DUPLICATES" do 
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)      
+      @market.add_vendor(@vendor3)
+
+      expect(@market.sorted_item_list).to eq(["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"])
+    end
+  end
+
+  describe "#total_inventory" do 
+    it "can return the quantity of all items sold at the market" do
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)      
+      @market.add_vendor(@vendor3)
+
+      expected = {
+        "Banana Nice Cream" => {quantity:, vendors_that_sell: []}
+      }
+
+      expect(@market.total_inventory).to eq({})
+    end
+  end
 end
