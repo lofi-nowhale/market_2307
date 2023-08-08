@@ -1,11 +1,9 @@
 class Item
-  attr_reader :name, :item_price
+  attr_reader :name, :price
   def initialize(item_details)
     @name = item_details[:name]
-    @item_price = item_details[:price]
+    @price = item_details[:price].delete('$').to_f
   end
 
-  def price
-    @item_price.delete('$').to_f
-  end
+  
 end
