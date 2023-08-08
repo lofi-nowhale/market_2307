@@ -8,4 +8,14 @@ class Market
   def add_vendor(vendor)
     @vendors << vendor
   end
+
+  def vendor_names
+    names = []
+    @vendors.find_all do |vendor|
+      names << vendor.name
+    end
+    names
+  end
+
+  
 end
