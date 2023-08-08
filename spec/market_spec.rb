@@ -27,4 +27,14 @@ RSpec.describe Market do
     expect(@market.name).to eq "South Pearl Street Farmers Market"
     expect(@market.vendors).to eq([])
   end
+
+  describe "#add_vendor" do 
+    it "can add vendor objects to the @vendors array" do 
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)      
+      @market.add_vendor(@vendor3)
+
+      expect(@market.vendors).to eq([@vendor1, @vendor2, @vendor3])
+    end
+  end
 end
