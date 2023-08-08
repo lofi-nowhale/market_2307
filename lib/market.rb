@@ -34,16 +34,12 @@ class Market
   end
 
   def total_inventory
-    items = sorted_item_list
-    market_inventory = Hash.new(0)
+    market_inventory = Hash.new { |hash, key| hash[key] = {quantity: 0, vendors_that_sell: []}}
 
-    items.find_all do |item|
-      market_inventory[item]
-    end
-    
     @vendors.each do |vendor|
       vendor.inventory.each do |item, quantity|
-        market_inventory[item] = quantity
+        market_inventory[item][:quantity] += quantity
+        market_inventory[item][:vendors_that_sell] << vendor
       end
     end
     market_inventory

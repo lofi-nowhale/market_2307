@@ -83,11 +83,26 @@ RSpec.describe Market do
       @market.add_vendor(@vendor2)      
       @market.add_vendor(@vendor3)
 
-      expected = {
-        "Banana Nice Cream" => {quantity:, vendors_that_sell: []}
-      }
+        expected = {
+          @item1 => {
+            quantity: 100, 
+            vendors_that_sell: [@vendor1, @vendor3]
+          },
+          @item2 => {
+            quantity: 7,
+            vendors_that_sell: [@vendor1]
+          },
+          @item3 => {
+            quantity: 25,
+            vendors_that_sell: [@vendor2]
+          },
+          @item4 => {
+            quantity: 50,
+            vendors_that_sell: [@vendor2]
+          }
+        }
 
-      expect(@market.total_inventory).to eq({})
+      expect(@market.total_inventory).to eq(expected)
     end
   end
 end
