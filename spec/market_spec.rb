@@ -27,4 +27,43 @@ RSpec.describe Market do
     expect(@market.name).to eq "South Pearl Street Farmers Market"
     expect(@market.vendors).to eq([])
   end
+
+  describe "#add_vendor" do 
+    it "can add vendor objects to the @vendors array" do 
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)      
+      @market.add_vendor(@vendor3)
+
+      expect(@market.vendors).to eq([@vendor1, @vendor2, @vendor3])
+    end
+  end
+
+  describe "#vendor_names" do 
+    it "can return an array of all vendor names" do 
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)      
+      @market.add_vendor(@vendor3)
+
+      expect(@market.vendor_names).to  eq(["Rocky Mountain Fresh", "Ba-Nom-a-Nom", "Palisade Peach Shack"])
+    end
+  end
+
+  describe "#vendors_that_sell" do 
+    it "can return an array of vendors who sell the given item" do 
+      @market.add_vendor(@vendor1)
+      @market.add_vendor(@vendor2)      
+      @market.add_vendor(@vendor3)
+
+      expect(@market.vendors_that_sell(@item1)).to eq([@vendor1, @vendor3])
+      expect(@market.vendors_that_sell(@item4)).to eq([@vendor2])
+    end
+  end
+
+  describe "#potential_revenue" do 
+    it "can show a vendor's potential revenue by multiplying the sum of all their item's prices by quantity" do
+      expect(@vendor1.potential_revenue).to eq 29.75
+      expect(@vendor2.potential_revenue).to eq 345.00
+      expect(@vendor3.potential_revenue).to eq 48.75
+    end
+  end
 end
